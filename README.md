@@ -2,7 +2,7 @@
 <p align="center">
   <a href="https://github.com/Anuken/Mindustry/tree/master"><img src="images/logo.png" width="820" alt="">
 </p>
-    
+
 <img align="right" hspace="0" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&color=%23ebac54">
 
 # Info
@@ -12,7 +12,7 @@
 <p align="right">
   <a href="https://anuke.itch.io/mindustry">
     <img src="https://static.itch.io/images/badge.svg" height="50"></a>
-    
+
   <a href="https://anuke.itch.io/mindustry">
     <img src="images/icon.png" height="50"></a>
 </p>
@@ -63,9 +63,9 @@ console.log("Пример кода через HTML")
   <p align="center">"Пример цитаты, центрированной"</p>
 </blockquote>
 
-<!-- Таблица - ->    
+<!-- Таблица - ->
 <table align="center" >
-  <!-- Первая строка - ->    
+  <!-- Первая строка - ->
   <tr>
     <!-- Левая колонка - ->
     <td>
@@ -79,10 +79,8 @@ console.log("Пример кода через HTML")
       </blockquote>
 <pre>
 Тестовый README
-</pre> 
+</pre>
     </td>
   </tr>
 </table>
       </table>
-
-
