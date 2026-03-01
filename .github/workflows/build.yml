@@ -25,31 +25,33 @@ jobs:
         api-level: 33
         build-tools: 33.0.2
 
-    # 4️⃣ Делаем gradlew исполняемым
+    # 4️⃣ Добавляем Build Tools в PATH
+    - run: echo "$ANDROID_HOME/build-tools/33.0.2" >> $GITHUB_PATH
+
+    # 5️⃣ Делаем gradlew исполняемым
     - run: chmod +x gradlew
 
-    # 5️⃣ Собираем обычный jar через Gradle
+    # 6️⃣ Собираем обычный jar через Gradle
     - run: ./gradlew clean jar
 
-    # 6️⃣ Конвертируем jar в classes.dex
+    # 7️⃣ Конвертируем jar в classes.dex
     - run: |
         mkdir -p build/dex
-        d8 --output build/dex build/libs/*.jar
+        $ANDROID_HOME/build-tools/33.0.2/d8 --output build/dex build/libs/*.jar
 
-    # 7️⃣ Собираем финальный jar с classes.dex + assets + mod.hjson
+    # 8️⃣ Собираем финальный jar с classes.dex + assets + mod.hjson
     - run: |
-        cd build/libs
-        mkdir temp
-        cp ../../assets/* temp/ -r
-        cp ../../mod.hjson temp/
-        cp ../dex/classes.dex temp/
-        cd temp
+        mkdir -p build/libs/temp
+        cp -r assets/* build/libs/temp/
+        cp mod.hjson build/libs/temp/
+        cp build/dex/classes.dex build/libs/temp/
+        cd build/libs/temp
         zip -r ../ARX-Alpha-Mod-android.jar .
         cd ..
         rm -rf temp
 
-    # 8️⃣ Загружаем готовый jar как артефакт
+    # 9️⃣ Загружаем готовый jar как артефакт
     - uses: actions/upload-artifact@v4
       with:
         name: ARX-Alpha-Mod
-        path: build/libs/ARX-Alpha-Mod.jar
+        path: build/libs/ARX-Alpha-Mod-android.jar
