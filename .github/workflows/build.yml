@@ -39,19 +39,25 @@ jobs:
         mkdir -p build/dex
         $ANDROID_HOME/build-tools/34.0.0/d8 --output build/dex build/libs/*.jar
 
-    # 8️⃣ Собираем финальный jar с classes.dex + assets + mod.hjson
-    - run: |
+    # 8️⃣ Собираем универсальный jar (Desktop + Android + assets + mod.hjson)
+    - name: Build universal jar
+      run: |
         mkdir -p build/libs/temp
+        # Распаковываем Desktop jar
+        unzip build/libs/ARX-Alpha-Mod.jar -d build/libs/temp
+        # Копируем classes.dex
+        cp build/dex/classes.dex build/libs/temp/
+        # Копируем assets и mod.hjson
         cp -r assets/* build/libs/temp/
         cp mod.hjson build/libs/temp/
-        cp build/dex/classes.dex build/libs/temp/
+        # Создаём новый jar
         cd build/libs/temp
-        zip -r ../ARX-Alpha-Mod-android.jar .
+        zip -r ../ARX-Alpha-Mod-universal.jar .
         cd ..
         rm -rf temp
-
-    # 9️⃣ Загружаем готовый jar как артефакт
+    
+    # 9️⃣ Загружаем готовый универсальный jar как артефакт
     - uses: actions/upload-artifact@v4
       with:
         name: ARX-Alpha-Mod
-        path: build/libs/ARX-Alpha-Mod-android.jar
+        path: build/libs/ARX-Alpha-Mod-universal.jar
