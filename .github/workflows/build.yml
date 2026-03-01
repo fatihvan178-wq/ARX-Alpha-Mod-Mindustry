@@ -23,10 +23,10 @@ jobs:
     - uses: android-actions/setup-android@v2
       with:
         api-level: 33
-        build-tools: 33.0.2
+        build-tools: 34.0.0
 
     # 4️⃣ Добавляем Build Tools в PATH
-    - run: echo "$ANDROID_HOME/build-tools/33.0.2" >> $GITHUB_PATH
+    - run: echo "$ANDROID_HOME/build-tools/34.0.0" >> $GITHUB_PATH
 
     # 5️⃣ Делаем gradlew исполняемым
     - run: chmod +x gradlew
@@ -37,7 +37,7 @@ jobs:
     # 7️⃣ Конвертируем jar в classes.dex
     - run: |
         mkdir -p build/dex
-        $ANDROID_HOME/build-tools/33.0.2/d8 --output build/dex build/libs/*.jar
+        $ANDROID_HOME/build-tools/34.0.0/d8 --output build/dex build/libs/*.jar
 
     # 8️⃣ Собираем финальный jar с classes.dex + assets + mod.hjson
     - run: |
