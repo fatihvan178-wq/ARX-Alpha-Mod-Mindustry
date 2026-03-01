@@ -1,0 +1,53 @@
+plugins {
+    id "java"
+    id "org.jetbrains.kotlin.jvm" version "2.2.0"
+}
+
+group = 'com.axilians'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url "https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository" }
+}
+
+ext {
+    mindustryVersion = "v155.3"
+}
+
+sourceSets.main.java.srcDirs = ["src"]
+sourceSets.main.kotlin.srcDirs = ["src"]
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
+    compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions.jvmTarget = "17"
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from("mod.hjson")
+
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    from("assets") {
+        into("")// копируем содержимое assets **на корень jar**, без вложенной папки
+        // filteringCharset = 'UTF-8' // Принудительно копируем файлы в UTF-8
+    }
+}

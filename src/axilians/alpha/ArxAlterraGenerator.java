@@ -19,7 +19,7 @@ import mindustry.world.blocks.environment.*;
 
 import static mindustry.Vars.*;
 
-public class DQE extends PlanetGenerator{
+public class ArxAlterraGenerator extends PlanetGenerator{
     //alternate, less direct generation
     public static boolean indirectPaths = false;
     //random water patches

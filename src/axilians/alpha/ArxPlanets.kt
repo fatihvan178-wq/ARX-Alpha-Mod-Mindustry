@@ -1,31 +1,24 @@
 package axilians.alpha
 
-import mindustry.type.Planet
-import mindustry.content.Planets
-import mindustry.graphics.g3d.HexMesh
-import arc.graphics.Color
-import mindustry.world.meta.*
-import mindustry.world.blocks.environment.*
-import mindustry.maps.planet.* // если нужен PlanetGenerator
-import arc.func.Prov
-
-
 import arc.func.*;
 import arc.graphics.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
+
+import mindustry.content.Planets
+
 import mindustry.game.*;
 import mindustry.graphics.*;
 import mindustry.graphics.g3d.*;
-import mindustry.graphics.g3d.PlanetGrid.*;
-import mindustry.maps.planet.*;
+import mindustry.maps.planet.*;// если нужен PlanetGenerator
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
+import mindustry.world.blocks.environment.*
 
-import axilians.alpha.ArxPlanetGenerator
+import axilians.alpha.ArxAlterraGenerator
 
 object ArxPlanets {
 
@@ -35,7 +28,7 @@ object ArxPlanets {
         AlphaPlanet = Planet("alterra", Planets.sun, 1f, 3).apply {
             iconColor = Color.valueOf("2e1f1a");
             loadPlanetData = true
-            generator = DQE()
+            generator = ArxAlterraGenerator()
 
             // Основной меш планеты
             meshLoader = Prov<GenericMesh> { HexMesh(this@apply, 6) }
