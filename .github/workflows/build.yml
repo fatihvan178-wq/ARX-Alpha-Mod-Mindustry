@@ -1,63 +1,59 @@
-name: Build Mindustry Mod (Desktop + Android)
+name: Compile mod (Desktop + Android)
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  build:
+  Вuild:
     runs-on: ubuntu-latest
 
     steps:
-    # 1️⃣ Забираем репозиторий
-    - uses: actions/checkout@v4
+    # 1️⃣ Клонирует репозиторий на runner
+    - name: Download repository
+      uses: actions/checkout@v4
 
-    # 2️⃣ Устанавливаем JDK 17
-    - uses: actions/setup-java@v4
+    # 2️⃣ Устанавливает Java 17 через Temurin JDK
+    - name: Installs Java
+      uses: actions/setup-java@v4
       with:
         distribution: temurin
         java-version: 17
 
-    # 3️⃣ Устанавливаем Android SDK (для d8)
-    - uses: android-actions/setup-android@v2
+    # 3️⃣ Устанавливаем Android SDK ради компиляции d8
+    - name: Installing the Android SDK
+      uses: android-actions/setup-android@v2
       with:
         api-level: 33
         build-tools: 34.0.0
 
-    # 4️⃣ Добавляем Build Tools в PATH
-    - run: echo "$ANDROID_HOME/build-tools/34.0.0" >> $GITHUB_PATH
+    # 4️⃣ Добавляем Build Tools в PATH как переменную среду
+    - name: Configuring android
+      run: echo "$ANDROID_HOME/build-tools/34.0.0" >> $GITHUB_PATH
 
-    # 5️⃣ Делаем gradlew исполняемым
-    - run: chmod +x gradlew
+    # 5️⃣ Делаем gradlew исполняемым, на Linux так надо
+    - name: Configuring gradlew
+      run: chmod +x gradlew
 
-    # 6️⃣ Собираем обычный jar через Gradle
-    - run: ./gradlew clean jar
+    # 6️⃣ Собираем обычный jar через Gradle при помощи build.gradle
+    - name: Compiling Desktop jar
+      run: ./gradlew clean jar
 
     # 7️⃣ Конвертируем jar в classes.dex
-    - run: |
-        mkdir -p build/dex
-        $ANDROID_HOME/build-tools/34.0.0/d8 --output build/dex build/libs/*.jar
+    - name: Convert jar -> dex
+      run: |
+        mkdir -p build/temp
+        $ANDROID_HOME/build-tools/34.0.0/d8 --output build/temp build/libs/*.jar
 
     # 8️⃣ Собираем универсальный jar (Desktop + Android + assets + mod.hjson)
-    - name: Build universal jar
+    - name: Compiling jar
       run: |
-        mkdir -p build/libs/temp
-        # Распаковываем * jar , вместо * должно быть имя из rootProject.name = "ARX Alpha Mod" но пробелы не работают так что пока *
-        unzip build/libs/*.jar -d build/libs/temp
-        # Копируем classes.dex
-        cp build/dex/classes.dex build/libs/temp/
-        # Копируем assets и mod.hjson
-        cp -r assets/* build/libs/temp/
-        cp mod.hjson build/libs/temp/
-        # Создаём новый jar
-        cd build/libs/temp
-        zip -r ../ARX-Alpha-Mod-universal.jar .
-        cd ..
-        rm -rf temp
-    
+        unzip build/libs/*.jar -d build/temp
+        cd build/temp
+        zip -r ../ARX-Alpha-Mod.jar .
+
     # 9️⃣ Загружаем готовый универсальный jar как артефакт
-    - uses: actions/upload-artifact@v4
+    - name: Uploading artifact
+      uses: actions/upload-artifact@v4
       with:
         name: ARX-Alpha-Mod
-        path: build/libs/ARX-Alpha-Mod-universal.jar
+        path: build/ARX-Alpha-Mod.jar

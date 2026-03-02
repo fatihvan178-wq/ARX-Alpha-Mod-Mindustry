@@ -14,13 +14,19 @@ repositories {
 
 ext {
     mindustryVersion = "v155.3"
+
+    withoutKotlin = project.hasProperty("nokotlin")  // если запускаем с -Pnokotlin → исключаем kotlin
 }
 
 sourceSets.main.java.srcDirs = ["src"]
 sourceSets.main.kotlin.srcDirs = ["src"]
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    if (withoutKotlin) {
+        compileOnly "org.jetbrains.kotlin:kotlin-stdlib"
+    } else {
+        implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    }
 
     compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
     compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
@@ -40,11 +46,9 @@ jar {
 
     from("mod.hjson")
 
-    from {
-        configurations.runtimeClasspath.collect {
-            it.isDirectory() ? it : zipTree(it)
+    if (!withoutKotlin) {
+        from {configurations.runtimeClasspath.collect {it.isDirectory() ? it : zipTree(it)}}
         }
-    }
 
     from("assets") {
         into("")// копируем содержимое assets **на корень jar**, без вложенной папки
