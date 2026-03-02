@@ -3,7 +3,7 @@
   <a href="https://github.com/Anuken/Mindustry/tree/master"><img src="images/logo.png" width="820" alt="">
 </p>
 
-<img align="right" hspace="0" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&color=%23ebac54">
+<img align="right" hspace="0" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&labelColor=444444&color=ddac70">
 
 # Info
 - **На данный момент это `Тестовый мод` не предназначенный для скачивания.**
