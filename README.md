@@ -1,21 +1,27 @@
 <!-- Логотип по центру -->
 <p align="center">
-  <a href="https://github.com/Anuken/Mindustry/tree/master"><img src="images/logo.png" width="820" alt="">
+  <a hspace="0" href="https://github.com/Anuken/Mindustry/tree/master"><img src="images/logo.png" width="820" alt="Logo">
 </p>
+    
+<img align="left" hspace="0" alt="Static Badge" src="https://img.shields.io/badge/ARX-Alpha-20B2AA?style=for-the-badge&labelColor=444444&color=ddac70">
+
+
+<img align="right" hspace="0" alt="GitHub Downloads" src="https://img.shields.io/github/downloads/Axilians/ARX-Alpha-Mod-Mindustry/total?style=for-the-badge&labelColor=444444&color=ddac70">
+<img align="right" alt="GitHub commit activity" src="https://img.shields.io/github/last-commit/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&labelColor=444444&color=ddac70">
 
 <img align="right" hspace="0" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&labelColor=444444&color=ddac70">
+<img align="right" hspace="0" alt="GitHub Release" src="https://img.shields.io/github/v/release/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&labelColor=444444&color=ddac70&logo=github&logoColor=ddac70">
 
+----------------
+    
 # Info
 - **На данный момент это `Тестовый мод` не предназначенный для скачивания.**
 - **At the moment, this is the `Test mod` is not designed for download.**
 
-<p align="right">
-  <a href="https://anuke.itch.io/mindustry">
-    <img src="https://static.itch.io/images/badge.svg" height="50"></a>
-
-  <a href="https://anuke.itch.io/mindustry">
-    <img src="images/icon.png" height="50"></a>
-</p>
+<div align="right">
+  <a href="https://anuke.itch.io/mindustry"><img src="https://static.itch.io/images/badge.svg" height="50"></a>
+  <a href="https://anuke.itch.io/mindustry"><img src="images/icon.png" height="50"></a>
+</div>
 
 <!-- Горизонтальная линия - ->
 <hr>
