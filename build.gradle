@@ -8,8 +8,8 @@ version = '1.0'
 
 repositories {
     mavenCentral()
-    maven { url "https://jitpack.io" }
-    maven { url "https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository" }
+    maven { url = "https://jitpack.io" }
+    maven { url = "https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository" }
 }
 
 ext {
@@ -45,6 +45,7 @@ jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     from("mod.hjson")
+    from("icon.png")
 
     if (!withoutKotlin) {
         from {configurations.runtimeClasspath.collect {it.isDirectory() ? it : zipTree(it)}}

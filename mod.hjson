@@ -1,11 +1,11 @@
-name: "arx-axilians-alpha"
-main: "axilians.alpha.MainKotlin"
+name: "arx-khimeris"
+main: "axilians.khimeris.Main"
 
 author: "Axilians"
-displayName: "[red[]]\u26A0[[]] Arx Test Mod"
-subtitle: "[red[]]\u26A0[[]] Do not install this mod"
-description: "The test mod \n"
+displayName: "[red[]]\u26A0[[]] Test Mod"
+#subtitle: "[red[]]\u26A0[[]] Do not install this mod" # В браузере модификаций не отоброжается
+description: "[red[]]Do not[[]] install this mod \n"
 
-
-version: 0.0.1
+java: true
+version: 0.0.2
 minGameVersion: 155
