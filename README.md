@@ -9,7 +9,6 @@
 <img align="right" hspace="0" alt="GitHub Downloads" src="https://img.shields.io/github/downloads/Axilians/ARX-Alpha-Mod-Mindustry/total?style=for-the-badge&labelColor=444444&color=ddac70">
 <img align="right" alt="GitHub commit activity" src="https://img.shields.io/github/last-commit/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&labelColor=444444&color=ddac70">
 
-<img align="right" hspace="0" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&labelColor=444444&color=ddac70">
 <img align="right" hspace="0" alt="GitHub Release" src="https://img.shields.io/github/v/release/Axilians/ARX-Alpha-Mod-Mindustry?style=for-the-badge&labelColor=444444&color=ddac70&logo=github&logoColor=ddac70">
 
 ----------------
